@@ -43,7 +43,7 @@ app.get("/gpt/gptAxios", async (req, res) => {
 //   try {
 //     res = await axios.get(apiURL, {
 //       params: {
-//         OC: "junbum766",
+//         OC: "",
 //         target: "prec",
 //         type: "XML",
 //         display: 50,
@@ -104,14 +104,14 @@ app.get("/gpt/gptAxios", async (req, res) => {
 
 /////////////////// 본문 가져오기 ///////////////////
 // const apiURL = "http://www.law.go.kr/DRF/lawService.do"; // lawService 주의!! 목록 조회는 lawSearch임
-// // "link": "/DRF/lawService.do?OC=junbum766&amp;target=prec&amp;ID=71227&amp;type=HTML&amp;mobileYn="
+// // "link": "/DRF/lawService.do?OC=&amp;target=prec&amp;ID=71227&amp;type=HTML&amp;mobileYn="
 
 // const getData = async (linkID) => {
 //   let res;
 //   try {
 //     res = await axios.get(apiURL, {
 //       params: {
-//         OC: "junbum766",
+//         OC: "",
 //         target: "prec",
 //         type: "XML",
 //         ID: linkID,
