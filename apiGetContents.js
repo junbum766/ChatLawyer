@@ -33,28 +33,28 @@ const getContents = async () => {
     let id = link.slice(start, end);
     let result = await getData(id);
 
-    let resultIndexStart = result.indexOf("<판결요지>") + 9;
-    let resultIndexEnd = result.indexOf("</판결요지>") - 3;
+    let resultIndexStart = result.indexOf("<판결요지>");
+    let resultIndexEnd = result.indexOf("</판결요지>");
 
-    if (resultIndexStart == -1) {
+    jsonData[i].link = id;
+
+    let content = result.slice(resultIndexStart + 15, resultIndexEnd - 3);
+    content = content.trim();
+
+    if (content == "") {
       console.log(i, `번 >>> 판결요지 없음(id=${id})`);
       jsonData[i].contents = "";
-      jsonData[i].link = id;
       fail++;
       failList.push(i);
     } else {
       console.log(i, "번 완료!");
-      let content = result.slice(resultIndexStart + 6, resultIndexEnd);
-      content = content.trim();
-      jsonData[i].link = id;
       jsonData[i].contents = content;
     }
   }
   console.log("실패 개수 = ", fail);
   console.log("실패 id = ", failList);
-  const newJsonData = JSON.stringify(jsonData); // json 형식으로 변환
-
-  fs.writeFileSync("lawData.json", newJsonData, "utf-8"); // json 파일로 저장
+  // const newJsonData = JSON.stringify(jsonData); // json 형식으로 변환
+  // fs.writeFileSync("lawData.json", newJsonData, "utf-8"); // json 파일로 저장
 };
 
 getContents();
