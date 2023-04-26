@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: skyblue;
+        height: 100vh;
+      }
+      h1 {
+        position: relative;
+        bottom: 100px;
+        font-size: 50px;
+      }
+      input {
+        position: relative;
+        bottom: 120px;
+        width: 100px;
+        height: 50px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ChatGPT Service</h1>
+    <form action="/gpt" method="GET">
+      <p><input type="submit" value="Start!" /></p>
+    </form>
+  </body>
+</html>
