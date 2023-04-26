@@ -1,7 +1,8 @@
 const { Configuration, OpenAIApi } = require("openai");
+require("dotenv").config(); // process.env.xxx
 
 const configuration = new Configuration({
-  apiKey: "API KEY",
+  apiKey: process.env.CHATGPT_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
