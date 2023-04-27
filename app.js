@@ -13,7 +13,7 @@ app.use("/static", express.static(__dirname + "/static"));
 app.use(cors());
 
 // json
-const jsonFile = fs.readFileSync("./lawDataWithVector.json", "utf8");
+const jsonFile = fs.readFileSync("./lawListNewVector.json", "utf8");
 const jsonData = JSON.parse(jsonFile);
 
 //파이썬 모듈 불러오기 위함
@@ -40,7 +40,13 @@ require("dotenv").config(); // process.env.xxx
 
 let main = require("./chatGPT.js"); // Gpt 불러옴
 
-const messages = [{ role: "system", content: "You are a helpful real estate lawyer. If a user has a legal question, please kindly consult." }];
+const messages = [
+  {
+    role: "system",
+    content:
+      "You are a helpful real estate lawyer. If a user has a legal question, please kindly consult.",
+  },
+];
 
 app.get("/", function (req, res) {
   res.render("index");
@@ -56,10 +62,10 @@ app.get("/gpt/gptAxios", async (req, res) => {
   const sim = await getSimilarity(query); // 질문과 판례의 유사도를 측정, top5의 id를 불러옴
   console.log("similarity ID >>> ", sim);
   let lawList = [];
-  for (let num of sim) { // top5 id에 대응하는 판결요지문을 가져와서 빈 리스트에 넣어줌
-    lawList.push(jsonData[Number(num)].contents);
+  for (let num of sim) {
+    // top5 id에 대응하는 판결요지문을 가져와서 빈 리스트에 넣어줌
+    lawList.push(jsonData[Number(num)]["조문내용"]);
   }
-  console.log('top3 similarity Law >>> ', lawList);
   const answer = await main(messages, query, lawList); // 질문이 gpt에 들어가고, 대답이 나옴
   console.log("대답: ", answer);
 

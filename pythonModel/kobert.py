@@ -61,8 +61,6 @@ out5 = model(
 result5 = out5.pooler_output
 
 
-
-
 cos = nn.CosineSimilarity(dim=1)
 
 print('-------------- cosine smilarity --------------')
