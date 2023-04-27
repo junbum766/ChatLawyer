@@ -31,11 +31,14 @@ def sbert(query):
 
     listDesc = sorted(similatiyList, key=lambda x: x["similatiy"], reverse=True)
 
-    top5 = listDesc[:5]
+    result = listDesc[0:5] # top5 유사도만
+    # result = filter(lambda x: x["similatiy"] > 0.6, listDesc)  # 0.6 보다 유사도가 높은 법들만 뽑음
+    # result = list(result)
+    # print(result)
 
-    top5 = [el['id'] for el in top5] # 유사도 높은 순서대로 id 출력
+    topLaw = [el["id"] for el in result]  # 유사도 높은 순서대로 id 출력
 
-    print(top5)
+    print(topLaw)
 
 
 # def hello(a):
@@ -44,4 +47,4 @@ def sbert(query):
 
 if __name__ == "__main__":
     sbert(sys.argv[1])
-    # sbert("안녕하세요")
+    # sbert("""""")

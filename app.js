@@ -27,9 +27,9 @@ const getSimilarity = (query) => {
       let topSimilarity = data.toString();
       topSimilarity = topSimilarity.slice(1, topSimilarity.length - 2);
       let topSimilarityList = topSimilarity.split(",");
-      topSimilarityList.map((el) => {
-        return el.trim();
-      });
+      // topSimilarityList.map((el) => {
+      //   return el.trim();
+      // });
       resolve(topSimilarityList);
     });
   });
@@ -58,16 +58,25 @@ app.get("/gpt", function (req, res) {
 
 app.get("/gpt/gptAxios", async (req, res) => {
   query = req.query.questionData; // 질문을 받아옴
-  console.log("질문: ", query);
+  console.log("질문 >>> ", query);
   const sim = await getSimilarity(query); // 질문과 판례의 유사도를 측정, top5의 id를 불러옴
   console.log("similarity ID >>> ", sim);
   let lawList = [];
+  let lawIndex = [];
   for (let num of sim) {
-    // top5 id에 대응하는 판결요지문을 가져와서 빈 리스트에 넣어줌
-    lawList.push(jsonData[Number(num)]["조문내용"]);
+    let topEl = jsonData[Number(num)];
+    let index = "";
+    lawList.push(topEl["조문내용"]); // top5 id에 대응하는 판결요지문을 가져와서 빈 리스트에 넣어줌
+    if (Object.keys(topEl).includes("조문가지번호")) {
+      index = `제${topEl["조문번호"]}조의${topEl["조문가지번호"]}`;
+    } else {
+      index = `제${topEl["조문번호"]}조`;
+    }
+    lawIndex.push(index);
   }
-  const answer = await main(messages, query, lawList); // 질문이 gpt에 들어가고, 대답이 나옴
-  console.log("대답: ", answer);
+  console.log("참고 법안 >>> ", lawIndex);
+  const answer = await main(messages, query, lawList, lawIndex); // 질문이 gpt에 들어가고, 대답이 나옴
+  console.log("대답 >>> ", answer);
 
   res.send(answer); // 대답을 뿌려줌
 });
