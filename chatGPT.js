@@ -12,7 +12,7 @@ const main = async (messages, userMsg, lawList) => {
   }
   messages.push({
     role: "user",
-    content: `${userMsg}\n이 질문에 대답하기 위해서, 위 다섯 개의 법 조항들을 참고해서 세 문장 이내로 답변해줘.`,
+    content: `${userMsg}\n이 질문에 대답하기 위해서, 위 다섯 개의 법 조항들을 반드시 참고해서 답변해줘.`,
   });
   res = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",

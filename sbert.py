@@ -43,5 +43,5 @@ def sbert(query):
 
 
 if __name__ == "__main__":
-    # sbert(sys.argv[1])
-    sbert("안녕하세요")
+    sbert(sys.argv[1])
+    # sbert("안녕하세요")

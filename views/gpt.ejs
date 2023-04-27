@@ -68,7 +68,7 @@
     <h1>ChatGPT Service</h1>
     <div class="container"></div>
     <form class="question-submit" name="user-input" onsubmit="return false;">
-      <input class="question" type="text" onkeyup="enterkey()" />
+      <input class="question" type="text" onkeyup="enterkey()" autofocus />
       <button type="button" onclick="chat()">Enter</button>
     </form>
     <script>
@@ -106,7 +106,7 @@
             url: "/gpt/gptAxios",
             params: inputData,
           }).then((res) => {
-            console.log('>>>' ,res.data);
+            console.log(">>>", res.data);
             let gptChatBox = `<div class="line">
                   <div class="chat">${res.data}</div>
                   </div>`;
