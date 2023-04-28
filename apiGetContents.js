@@ -97,7 +97,7 @@ require("dotenv").config(); // process.env.xxx
 const apiURL = "http://www.law.go.kr/DRF/lawService.do";
 
 const getContents = async () => {
-  let jsonData = require("./lawList.json"); // 로컬 json 불러오기
+  let jsonData = require("./enforceLawList.json"); // 로컬 json 불러오기
 
   jsonData = jsonData["법령"]["조문"][0]["조문단위"];
 
@@ -120,7 +120,7 @@ const getContents = async () => {
           }
         }
       }
-      dict["id"] = String(i);
+      dict["id"] = String(i+32); ///////
       dict["조문번호"] = data["조문번호"][0];
       if (data["조문가지번호"] != undefined) {
         dict["조문가지번호"] = data["조문가지번호"][0];
@@ -128,7 +128,7 @@ const getContents = async () => {
       dict["조문내용"] = text;
       result.push(dict);
     } else {
-      dict["id"] = String(i);
+      dict["id"] = String(i+32); /////
       dict["조문번호"] = data["조문번호"][0];
       if (data["조문가지번호"] != undefined) {
         dict["조문가지번호"] = data["조문가지번호"][0];
@@ -141,7 +141,7 @@ const getContents = async () => {
   console.log(result);
 
   result = JSON.stringify(result); // json 형식으로 변환
-  fs.writeFileSync("lawListNew.json", result, "utf-8"); // json 파일로 저장
+  fs.writeFileSync("enforcelawListNew.json", result, "utf-8"); // json 파일로 저장
 };
 
 getContents();

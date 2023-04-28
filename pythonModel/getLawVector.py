@@ -8,7 +8,8 @@ with open("../lawListNew.json", "r") as f:
 
 # print(json_data[140]['contents'])
 
-model = SentenceTransformer("jhgan/ko-sbert-multitask")
+# model = SentenceTransformer("jhgan/ko-sbert-multitask")
+model = SentenceTransformer("jhgan/ko-sroberta-multitask")
 
 print("...시작!")
 
@@ -25,7 +26,7 @@ for i in range(len(json_data)):
 
     json_data[i]["vector"] = arr
 
-with open("./lawListNewVector.json", "w", encoding="UTF-8") as outfile:
+with open("./lawListNewVectorSroberta.json", "w", encoding="UTF-8") as outfile:
     json.dump(json_data, outfile, ensure_ascii=False)
 
 print("...완료!")
