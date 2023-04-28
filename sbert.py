@@ -6,7 +6,7 @@ import sys
 
 
 def sbert(query):
-    with open("./lawListNewVector.json", "r") as f:
+    with open("./lawListNewVector.json", "r", encoding="utf-8") as f:
         json_data = json.load(f)
     # print(len(json_data))  ###
     model = SentenceTransformer("jhgan/ko-sbert-multitask")
@@ -31,7 +31,7 @@ def sbert(query):
 
     listDesc = sorted(similatiyList, key=lambda x: x["similatiy"], reverse=True)
 
-    result = listDesc[0:5] # top5 유사도만
+    result = listDesc[0:5]  # top5 유사도만
     # result = filter(lambda x: x["similatiy"] > 0.6, listDesc)  # 0.6 보다 유사도가 높은 법들만 뽑음
     # result = list(result)
     # print(result)

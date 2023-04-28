@@ -25,7 +25,8 @@ const getSimilarity = (query) => {
     result_02.stdout.on("data", (data) => {
       console.log("진행중...");
       let topSimilarity = data.toString();
-      topSimilarity = topSimilarity.slice(1, topSimilarity.length - 2);
+      topSimilarity = topSimilarity.slice(1, topSimilarity.length - 2); // 맥
+      // topSimilarity = topSimilarity.slice(1, topSimilarity.length - 3); // 윈도우
       let topSimilarityList = topSimilarity.split(",");
       // topSimilarityList.map((el) => {
       //   return el.trim();

@@ -72,7 +72,7 @@ require("dotenv").config(); // process.env.xxx
 //         OC: process.env.LAW_DATA_API_KEY,
 //         target: "law",
 //         type: "XML",
-//         MST: 238797,
+//         MST: 246231,
 //       },
 //     });
 //   } catch (e) {
@@ -87,7 +87,7 @@ require("dotenv").config(); // process.env.xxx
 
 //   parser.parseStringPromise(result).then(function (result) {
 //     const json = JSON.stringify(result);
-//     fs.writeFileSync("lawList.json", json, "utf-8"); // json 파일로 저장
+//     fs.writeFileSync("enforceLawList.json", json, "utf-8"); // json 파일로 저장
 //   });
 //   // const newJsonData = JSON.stringify(jsonData); // json 형식으로 변환
 // };
@@ -107,8 +107,8 @@ const getContents = async () => {
     data = jsonData[i];
     let dict = {};
     let keys = Object.keys(data);
-    let text = "";
     if (keys.includes("항")) {
+      let text = data["조문내용"][0];
       for (let hang of data["항"]) {
         if (hang["항내용"]) {
           text += hang["항내용"][0].trim();

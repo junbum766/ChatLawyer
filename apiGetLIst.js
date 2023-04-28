@@ -95,4 +95,5 @@ const result = async (list) => {
 const allData = [];
 result(allData);
 // 상가건물 임대차 보호법 : MST=238797
+// 시행령 : MST=246231
 // 주택 임대차 보호법 : MST=249999
