@@ -94,10 +94,9 @@ require("dotenv").config(); // process.env.xxx
 // getContents();
 
 ///////////// lawList json 보기 쉽게 ////////////
-const apiURL = "http://www.law.go.kr/DRF/lawService.do";
 
 const getContents = async () => {
-  let jsonData = require("./enforceLawList.json"); // 로컬 json 불러오기
+  let jsonData = require("./lawList.json"); // 로컬 json 불러오기
 
   jsonData = jsonData["법령"]["조문"][0]["조문단위"];
 
@@ -111,16 +110,16 @@ const getContents = async () => {
       let text = data["조문내용"][0];
       for (let hang of data["항"]) {
         if (hang["항내용"]) {
-          text += hang["항내용"][0].trim();
+          text += ' ' + hang["항내용"][0].trim() + ' ';
         }
         let hangKeys = Object.keys(hang);
         if (hangKeys.includes("호")) {
           for (let ho of hang["호"]) {
-            text += ho["호내용"][0].trim();
+            text += ' ' + ho["호내용"][0].trim() + ' ';
           }
         }
       }
-      dict["id"] = String(i+32); ///////
+      dict["id"] = String(i); ///////
       dict["조문번호"] = data["조문번호"][0];
       if (data["조문가지번호"] != undefined) {
         dict["조문가지번호"] = data["조문가지번호"][0];
@@ -128,7 +127,7 @@ const getContents = async () => {
       dict["조문내용"] = text;
       result.push(dict);
     } else {
-      dict["id"] = String(i+32); /////
+      dict["id"] = String(i); /////
       dict["조문번호"] = data["조문번호"][0];
       if (data["조문가지번호"] != undefined) {
         dict["조문가지번호"] = data["조문가지번호"][0];
@@ -141,7 +140,7 @@ const getContents = async () => {
   console.log(result);
 
   result = JSON.stringify(result); // json 형식으로 변환
-  fs.writeFileSync("enforcelawListNew.json", result, "utf-8"); // json 파일로 저장
+  fs.writeFileSync("lawListNew.json", result, "utf-8"); // json 파일로 저장
 };
 
 getContents();

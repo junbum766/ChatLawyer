@@ -3,7 +3,7 @@ import sys
 import urllib.request
 import json
 
-with open("./lawListNew.json", "r") as f:
+with open("../lawListNew.json", "r") as f:
     json_data = json.load(f)
 
 client_id = ""  # 개발자센터에서 발급받은 Client ID 값
@@ -11,7 +11,7 @@ client_secret = ""  # 개발자센터에서 발급받은 Client Secret 값
 
 newJson = json_data
 
-for i in range(len(json_data)):
+for i in range(25):
     query = json_data[i]["조문내용"]
     encText = urllib.parse.quote(query)
     data = "source=ko&target=en&text=" + encText
@@ -26,9 +26,9 @@ for i in range(len(json_data)):
         json_object = json.loads(response_body.decode("utf-8"))
         content = json_object["message"]["result"]["translatedText"]
         print(content)
-        newJson[i]['조문내용'] = content
+        newJson[i]["조문내용"] = content
     else:
         print("Error Code:" + rescode)
 
-with open("./englishlawListNew.json", "w", encoding="UTF-8") as outfile:
+with open("./englishLawListNew.json", "w", encoding="UTF-8") as outfile:
     json.dump(newJson, outfile, ensure_ascii=False)
