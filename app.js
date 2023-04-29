@@ -40,6 +40,7 @@ const getSimilarity = (query) => {
 require("dotenv").config(); // process.env.xxx
 
 let main = require("./chatGPT.js"); // Gpt 불러옴
+let summarizer = require("./summarizer.js"); // Gpt로 질문 요약해주는 함수
 
 const messages = [
   {
@@ -59,6 +60,7 @@ app.get("/gpt", function (req, res) {
 
 app.get("/gpt/gptAxios", async (req, res) => {
   query = req.query.questionData; // 질문을 받아옴
+  query = await summarizer(query) // 질문을 요약해서 던져줌!
   console.log("질문 >>> ", query);
   const sim = await getSimilarity(query); // 질문과 판례의 유사도를 측정, top5의 id를 불러옴
   console.log("similarity ID >>> ", sim);
