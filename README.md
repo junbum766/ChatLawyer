@@ -3,12 +3,12 @@
 #### chatGPT를 이용한 상가임대차보호법 관련 볍률 상담 웹 서비스 입니다.
 ## 2. 실행 화면
 ### - client 화면
-<img src="">
+<img src="https://github.com/junbum766/ChatLawyer/blob/main/images/client.png?raw=true">
 ### - sever console 화면
-<img src="">
+<img src="https://github.com/junbum766/ChatLawyer/blob/main/images/server.png?raw=true">
 #### 질문과 유사한 법안 5가지를 뽑아서 ChatGPT에 질문과함께 프롬프트로 넣어준다.
 ## 3. 알고리즘
-
+<img src="https://github.com/junbum766/ChatLawyer/blob/main/images/overview.png?raw=true">
 ## 4. 문제점
 #### 아무것도 하지 않은 GPT에 비해 괜찮은 성능을 보이지만, 실제로 사용하기에는 매우 부족하다.
 #### 질문에 필요한 법조항을 올바르게 잘 뽑아내지 못하는게 가장 큰 단점인 것 같다.
