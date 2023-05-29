@@ -6,7 +6,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const main = async (messages, userMsg, lawList, lawIndex) => {  
+const main = async (messages, userMsg, lawList, lawIndex) => {
   let text = "";
   for (let i = 0; i < lawList.length; i++) {
     text += `
@@ -18,9 +18,8 @@ const main = async (messages, userMsg, lawList, lawIndex) => {
     content: `다음 지시에 따라서 질문에 친절하고 명료하게 답변을 해줘.
     1. 다음 대괄호 안의 질문을 분석해줘.
     [${userMsg}]
-    2. 다음 법 조항들을 참고해서 분석한 질문에 답변 해줘.
-    [${text}]
-    3. 50 단어 이내로 간단하고 논리적으로 답변 해줘.`,
+    2. 다음 법 조항들을 참고해서 분석한 질문에 50 단어 이내로 간단하고 논리적으로 답변 해줘.
+    [${text}]`,
   });
   res = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
